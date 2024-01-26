@@ -1,0 +1,32 @@
+﻿@model IEnumerable<AppliesVM>
+@using Microsoft.AspNetCore.Http;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+@{
+    ViewData["Title"] = "ApplyList";
+    Layout = "_Layout";
+}
+
+<h1>ApplyList</h1>
+
+@{
+    var UserId = (int)HttpContextAccessor.HttpContext.Session.GetInt32("UserId");
+}
+<table class="tabel ">
+    <thead>
+        <th >Job</th>
+        <th>Description</th>
+        <th>Attachment</th>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @if(item.ApplyForJobs.UserId == UserId){
+            <tr>
+                <td >@item.Jobs.Title</td>
+                <td>@item.ApplyForJobs.Description</td>
+                <td><a href="~/ApplyFiles/@item.ApplyForJobs.UploadCv" download="download">@item.ApplyForJobs.UploadCv</a></td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>

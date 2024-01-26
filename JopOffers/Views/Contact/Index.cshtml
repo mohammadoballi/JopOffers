@@ -1,0 +1,54 @@
+﻿
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table id="tbl" class="table table-bordered text-center text-black">
+    <thead class="table-primary">
+        <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Subject</th>
+        <th>Message</th>
+    </tr>
+    </thead>
+    <tbody class="table-info">
+
+    </tbody>
+
+    
+</table>
+
+@section Scripts{
+    <script>
+       
+        $(document).ready(function(){
+    
+        $.ajax({
+            url:"/api/Contacts" , 
+            method:"GET",
+            dataType:"json",
+            success:function(data){
+                $.each(data , function(k,v){
+                        $("#tbl tbody:last").append(
+                            "<tr>" +
+                            "<td>" + v.id + "</td>" +
+                            "<td>" + v.name + "</td>" +
+                            "<td>" + v.email + "</td>" +
+                            "<td>" + v.subject + "</td>" +
+                            "<td>" + v.message + "</td>" +
+                            "</tr>"
+                        );
+                });
+            },
+            error : function(){
+                alert("found error");
+            }
+        });
+        });
+    </script>
+}

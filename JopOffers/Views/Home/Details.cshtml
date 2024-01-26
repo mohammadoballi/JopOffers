@@ -1,0 +1,67 @@
+﻿@model JopOffers.Models.Jobs
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Jobs</h4>
+    <hr />
+    
+    <dl class="row">
+   <div class="col-6">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+        </div>
+        <div class="col-6">
+              <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd class = "col-sm-10">
+           <img src="/images/@Model.Image" class="img-fluid" />
+        </dd>
+
+
+        </div>
+
+    </dl>
+    }
+
+    <center class="mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <a class="btn btn-danger" asp-action="Index"> <i class="fa-solid fa-ban fa-bounce" style="color: #ffffff;"></i>    Cancel</a>
+            </div>
+
+            <div class="col-md-6">
+                <a class="btn btn-primary" asp-action="Apply" asp-controller="ApplyForJobs" asp-route-id="@Model.Id"> <i class="fa-solid fa-circle-check fa-bounce" style="color: #ffffff;"></i>  Apply for Jobs</a>
+            </div>
+        </div>
+    </center>
+</div>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CategoryJobsVm>
+@{
+    ViewData["Title"] = "Home Page";
+
+}
+<div class="container">
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>All jobs </h2>
+                <h3>Check our <span>Jobs</span></h3>
+                <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <ul id="portfolio-flters">
+                        <li data-filter="*" class="filter-active">All</li>
+                        @foreach(var item in Model){
+                            <li data-filter=".filter_@item.Category.Id">@item.Category.Name</li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+          
+            <div class="row portfolio-container">
+                @foreach(var item in Model){
+                      @foreach(var subItem in item.Jobs){
+                    <div class="col-lg-4 col-md-6 portfolio-item filter_@item.Category.Id ">
+                      
+                    <img  style="width:100%; height:300px;" src="~/Images/@subItem.Image" class="img-fluid"  alt="">
+                    <div class="portfolio-info">
+                        <h4>@subItem.Title</h4>
+                        <p>@subItem.Description</p>
+                        
+                        <a  asp-action="Details" asp-controller="Home" asp-route-id="@subItem.Id" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                    </div>
+                </div>
+                    }   
+
+                }
+            </div>
+        </div>
+    </section><!-- End Portfolio Section -->
+</div>
